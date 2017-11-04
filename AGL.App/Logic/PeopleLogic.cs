@@ -33,16 +33,16 @@ namespace AGL.App.Logic
             var result = data
                 .Where(person => person != null && person.Pets != null && person.Pets.Any())
                 .SelectMany(x => x.Pets
-                .Where(pet => pet.Type == PetType.Cat)
-                .Select(pet => new { gender = x.Gender, petName = pet.Name })
-             )
-            .GroupBy(g => g.gender)
-            .Select(x => new PetByGender
-            {
-                Gender = x.Key,
-                PetNames = x.Select(xx => xx.petName).OrderBy(v => v).ToArray()
-            })
-            .ToArray();
+                    .Where(pet => pet.Type == PetType.Cat)
+                    .Select(pet => new { gender = x.Gender, petName = pet.Name })
+                )
+                .GroupBy(g => g.gender)
+                .Select(x => new PetByGender
+                {
+                    Gender = x.Key,
+                    PetNames = x.Select(xx => xx.petName).OrderBy(v => v).ToArray()
+                })
+                .ToArray();
 
             return result;
         }
