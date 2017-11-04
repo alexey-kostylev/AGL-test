@@ -111,6 +111,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EndToEnd\endToEndTests.cs" />
     <Compile Include="IntegrationTests\AdapterIntegrationTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
