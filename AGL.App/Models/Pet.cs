@@ -33,7 +33,7 @@ namespace AGL.App.Models
         public override int GetHashCode()
         {
             var hash = 35;
-            hash = hash * 24 + Name.GetHashCode();
+            hash = hash * 24 + (Name?.GetHashCode()).GetValueOrDefault(0);
             hash = hash * 24 + Type.GetHashCode();
             return hash;
         }
