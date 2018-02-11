@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGL.App.Adapters
+namespace AGL.App
 {
     public interface IPeopleAdapter
     {
-        Task<ICollection<Person>> GetPersons();
+        Task<ICollection<Person>> GetPetOwners();
     }
 }

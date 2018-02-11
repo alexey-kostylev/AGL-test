@@ -8,7 +8,7 @@ using FluentAssertions;
 using System.Linq;
 using AGL.App.Models;
 
-namespace AGL.Test.IntegrationTests
+namespace AGL.Test.IntegrationAGL.Test.IntegrationTests
 {
     [TestClass]
     public class AdapterIntegrationTests
@@ -24,11 +24,11 @@ namespace AGL.Test.IntegrationTests
         [TestMethod]
         public async Task ShouldGetPeopleAndModelShouldBeValid()
         {
-            var data = await _adapter.GetPersons();
+            var data = await _adapter.GetPetOwners();
             data.Should().NotBeNullOrEmpty();
 
             var bob = data.FirstOrDefault(x => x.Name == "Bob");
-            ValidateBob(bob);       
+            ValidateBob(bob);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace AGL.Test.IntegrationTests
         public void UrlInvalidShouldThrowException()
         {
             var adapter = new AzurePeopleAdapter(new RestClient("http://test.net/people.json"));
-            Func<Task> func = async() => await adapter.GetPersons();
+            Func<Task> func = async () => await adapter.GetPetOwners();
 
             func.ShouldThrow<InvalidOperationException>();
         }

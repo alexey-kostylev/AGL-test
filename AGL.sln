@@ -5,7 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGL.App", "AGL.App\AGL.App.csproj", "{3813D943-AD36-40CD-8E16-A1849F8A6719}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGL.Test", "AGL.Test\AGL.Test.csproj", "{5DFA7765-70B6-4523-8BE1-9387E3B65111}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{865AE6E6-AF56-41F1-AB53-B7AA307529C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGL.Test.Integration", "Tests\AGL.Test.Integration\AGL.Test.Integration.csproj", "{473EBA94-E30E-43C8-BA5C-58C61C4AB696}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGL.Test.UnitTests", "Tests\AGL.Test.UnitTests\AGL.Test.UnitTests.csproj", "{5DFA7765-70B6-4523-8BE1-9387E3B65111}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +21,10 @@ Global
 		{3813D943-AD36-40CD-8E16-A1849F8A6719}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3813D943-AD36-40CD-8E16-A1849F8A6719}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3813D943-AD36-40CD-8E16-A1849F8A6719}.Release|Any CPU.Build.0 = Release|Any CPU
+		{473EBA94-E30E-43C8-BA5C-58C61C4AB696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{473EBA94-E30E-43C8-BA5C-58C61C4AB696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{473EBA94-E30E-43C8-BA5C-58C61C4AB696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{473EBA94-E30E-43C8-BA5C-58C61C4AB696}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DFA7765-70B6-4523-8BE1-9387E3B65111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DFA7765-70B6-4523-8BE1-9387E3B65111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DFA7765-70B6-4523-8BE1-9387E3B65111}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -24,5 +32,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{473EBA94-E30E-43C8-BA5C-58C61C4AB696} = {865AE6E6-AF56-41F1-AB53-B7AA307529C3}
+		{5DFA7765-70B6-4523-8BE1-9387E3B65111} = {865AE6E6-AF56-41F1-AB53-B7AA307529C3}
 	EndGlobalSection
 EndGlobal

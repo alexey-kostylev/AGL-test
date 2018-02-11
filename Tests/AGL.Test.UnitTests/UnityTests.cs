@@ -36,5 +36,15 @@ namespace AGL.Test.UnitTests
             var client = _container.Resolve<IRestClient>();
             client.BaseUrl.Should().Be("http://agl-developer-test.azurewebsites.net/people.json");
         }
+
+        [TestMethod]
+        public void SHouldThrowExceptionForNullArgument()
+        {
+            IUnityContainer container = null;
+
+            Action act = () => container.WireupAglDependencies();
+
+            act.ShouldThrow<ArgumentNullException>();
+        }
     }
 }

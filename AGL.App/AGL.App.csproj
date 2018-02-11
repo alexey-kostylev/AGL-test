@@ -84,11 +84,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\IPeopleAdapter.cs" />
+    <Compile Include="IPeopleAdapter.cs" />
     <Compile Include="Adapters\AzurePeopleAdapter.cs" />
-    <Compile Include="Controllers\PeopleControler.cs" />
-    <Compile Include="Logic\IPeopleLogic.cs" />
-    <Compile Include="Logic\PeopleLogic.cs" />
+    <Compile Include="IPetsLogic.cs" />
+    <Compile Include="IPetsController.cs" />
+    <Compile Include="Logic\PetsController.cs" />
+    <Compile Include="Logic\PetsLogic.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Pet.cs" />
@@ -99,7 +100,9 @@
     <Compile Include="Unity\UnityExtension.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

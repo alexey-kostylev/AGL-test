@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AGL.App.Models;
-using AGL.App.Adapters;
 
 namespace AGL.App.Logic
 {
-    public class PeopleLogic : IPeopleLogic
+    public class PetsLogic : IPetsLogic
     {
-        private IPeopleAdapter _peopleAdapter;
+        private readonly IPeopleAdapter _peopleAdapter;
 
-        public PeopleLogic(IPeopleAdapter peopleAdapter)
+        public PetsLogic(IPeopleAdapter peopleAdapter)
         {
             if (peopleAdapter == null)
             {
@@ -20,11 +19,11 @@ namespace AGL.App.Logic
             }
 
             _peopleAdapter = peopleAdapter;
-        }
+        }        
 
         public async Task<ICollection<PetByGender>> GetAllCats()
         {
-            var data = await this.GetPersons();
+            var data = await _peopleAdapter.GetPetOwners();
             if (data == null || !data.Any())
             {
                 return new PetByGender[0];
@@ -45,13 +44,6 @@ namespace AGL.App.Logic
                 .ToArray();
 
             return result;
-        }
-
-        public async Task<ICollection<Person>> GetPersons()
-        {
-            var data = await this._peopleAdapter.GetPersons();
-            return data;
-
-        }
+        }        
     }
 }

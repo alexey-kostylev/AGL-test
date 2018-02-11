@@ -2,11 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Unity;
 using AGL.App.Unity;
-using AGL.App.Controllers;
 using System.Threading.Tasks;
 using FluentAssertions;
+using AGL.App;
 
-namespace AGL.Test.EndToEnd
+namespace AGL.Test.Integration
 {
     [TestClass]
     public class endToEndTests
@@ -21,9 +21,13 @@ namespace AGL.Test.EndToEnd
         [TestMethod]
         public async Task ShouldGetDataFromAzureAndMakeView()
         {
-            var controller = _container.Resolve<PeopleControler>();
-            var view = await controller.GetCatsWithOwnersGender();
+            var logic = _container.Resolve<IPetsController>();            
+            var view = await logic.GetCatsByGender();
             view.Should().NotBeNullOrEmpty();
+
+            view.Should().Contain("Male");
+            view.Should().Contain("Female");
+            view.Should().Contain("Garfield");
         }
     }
 }

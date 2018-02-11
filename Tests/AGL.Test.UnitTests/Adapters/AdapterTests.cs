@@ -10,10 +10,10 @@ using AGL.App.Models;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace AGL.Test.UnitTests
+namespace AGL.Test.UnitTests.Adapters
 {
     [TestClass]
-    public class AdapterTests: UnitTestBase
+    public class AdapterTests: TestBase
     {
         private Mock<IRestClient> _mockRestClient = new Mock<IRestClient>();
         private AzurePeopleAdapter _adapter;
@@ -23,6 +23,14 @@ namespace AGL.Test.UnitTests
         {
             _adapter = new AzurePeopleAdapter(_mockRestClient.Object);
         }
+
+        [TestMethod]
+        public void NullRestClientSHouldThrowException()
+        {
+            Action act = () => new AzurePeopleAdapter(null);
+
+            act.ShouldThrow<ArgumentNullException>().Where(x => x.Message.Contains("restClient"));
+        }        
 
         [TestMethod]
         public async Task ShouldReturnData()
@@ -39,7 +47,7 @@ namespace AGL.Test.UnitTests
             _mockRestClient.Setup(x => x.ExecuteGetTaskAsync<List<Person>>(It.IsNotNull<IRestRequest>()))
                 .ReturnsAsync(response);
 
-            var data = await _adapter.GetPersons();
+            var data = await _adapter.GetPetOwners();
             data.Should().NotBeNull();
             data.Should().BeEquivalentTo(requestData);
         }
@@ -57,7 +65,7 @@ namespace AGL.Test.UnitTests
             _mockRestClient.Setup(x => x.ExecuteGetTaskAsync<List<Person>>(It.IsAny<IRestRequest>()))
                 .ReturnsAsync(response);
 
-            Func<Task> act = async() => await _adapter.GetPersons();
+            Func<Task> act = async() => await _adapter.GetPetOwners();
             act.ShouldThrow<InvalidOperationException>().WithMessage($"*{System.Net.HttpStatusCode.BadRequest}*");
         }
 
@@ -74,7 +82,7 @@ namespace AGL.Test.UnitTests
             _mockRestClient.Setup(x => x.ExecuteGetTaskAsync<List<Person>>(It.IsAny<IRestRequest>()))
                 .ReturnsAsync(response);
 
-            Func<Task> act = async () => await _adapter.GetPersons();
+            Func<Task> act = async () => await _adapter.GetPetOwners();
             act.ShouldThrow<InvalidOperationException>().WithMessage("*error-test*");
         }
     }

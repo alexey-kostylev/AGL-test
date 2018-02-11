@@ -1,4 +1,4 @@
-﻿using AGL.App.Controllers;
+﻿using AGL.App.Logic;
 using AGL.App.Unity;
 using System;
 using System.Collections.Generic;
@@ -44,10 +44,10 @@ namespace AGL.App
         }
 
         static async Task MainAsync(IUnityContainer container)
-        {
-            var controller = container.Resolve<PeopleControler>();
-
-            var result = await controller.GetCatsWithOwnersGender();
+        {            
+            var controller = container.Resolve<IPetsController>();
+         
+            var result = await controller.GetCatsByGender();
 
             Console.WriteLine(result);
         }

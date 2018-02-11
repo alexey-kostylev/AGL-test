@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AGL.App.Models;
-using System.Net.Http;
 using RestSharp;
-using System.Threading;
 using System.Net;
 
 namespace AGL.App.Adapters
@@ -27,7 +23,7 @@ namespace AGL.App.Adapters
             _restClient = restClient;
         }
 
-        public async Task<ICollection<Person>> GetPersons()
+        public async Task<ICollection<Person>> GetPetOwners()
         {
                      
             var request = new RestRequest();
@@ -41,7 +37,7 @@ namespace AGL.App.Adapters
 
             if (response.ResponseStatus != ResponseStatus.Completed || response.StatusCode != HttpStatusCode.OK)
             {                
-                throw new InvalidOperationException(
+                throw new WebException(
                     $"Error executing request. Error message: '{response.ErrorMessage}',"+ 
                     $"response status: {response.ResponseStatus}, "+
                     $"status code: {response.StatusCode}, ",
