@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 namespace AGL.App
 {
     public interface IPetsLogic
-    {      
-
+    {
+        /// <summary>
+        ///  Gets all cats grouped by owner's gender
+        /// </summary>
+        /// <returns></returns>
         Task<ICollection<PetByGender>> GetAllCats();        
     }
 }

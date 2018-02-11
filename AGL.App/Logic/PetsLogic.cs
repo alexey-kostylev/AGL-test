@@ -21,6 +21,11 @@ namespace AGL.App.Logic
             _peopleAdapter = peopleAdapter;
         }        
 
+
+        /// <summary>
+        /// Gets all cats grouped by owner's gender
+        /// </summary>
+        /// <returns></returns>
         public async Task<ICollection<PetByGender>> GetAllCats()
         {
             var data = await _peopleAdapter.GetPetOwners();
@@ -31,15 +36,15 @@ namespace AGL.App.Logic
 
             var result = data
                 .Where(person => person != null && person.Pets != null && person.Pets.Any())
-                .SelectMany(x => x.Pets
+                .SelectMany(person => person.Pets
                     .Where(pet => pet.Type == PetType.Cat)
-                    .Select(pet => new { gender = x.Gender, petName = pet.Name })
+                    .Select(pet => new { gender = person.Gender, petName = pet.Name })
                 )
                 .GroupBy(g => g.gender)
-                .Select(x => new PetByGender
+                .Select(genderGroup => new PetByGender
                 {
-                    Gender = x.Key,
-                    PetNames = x.Select(xx => xx.petName).OrderBy(v => v).ToArray()
+                    Gender = genderGroup.Key,
+                    PetNames = genderGroup.Select(groupItem => groupItem.petName).OrderBy(ord => ord).ToArray()
                 })
                 .ToArray();
 

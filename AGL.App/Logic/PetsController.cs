@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace AGL.App.Logic
 {
+
+    /// <summary>
+    /// Generates text view from data
+    /// </summary>
     public class PetsController : IPetsController
     {
         private IPetsLogic _logic;
@@ -18,6 +22,11 @@ namespace AGL.App.Logic
 
             _logic = logic;
         }
+
+        /// <summary>
+        /// Calls logic to calculate data and generates view in a text format
+        /// </summary>
+        /// <returns></returns>
 
         public async Task<string> GetCatsByGender()
         {
