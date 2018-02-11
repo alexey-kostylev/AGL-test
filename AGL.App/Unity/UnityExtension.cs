@@ -20,12 +20,14 @@ namespace AGL.App.Unity
             if (container == null)
             {
                 throw new ArgumentNullException(nameof(container));
-            }            
-
+            }
+            
             container.RegisterType<IPeopleAdapter, AzurePeopleAdapter>();
-            container.RegisterType<IPeopleLogic, PeopleLogic>();            
+            container.RegisterType<IPetsLogic, PetsLogic>();            
             container.RegisterType<IRestClient>(new InjectionFactory(c => 
                 new RestClient(ConfigurationManager.AppSettings["peopleUrl"])));
+
+            container.RegisterType<IPetsController, PetsController>();
         }
     }
 }

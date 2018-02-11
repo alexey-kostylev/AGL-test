@@ -6,8 +6,8 @@
     <ProjectGuid>{5DFA7765-70B6-4523-8BE1-9387E3B65111}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AGL.Test</RootNamespace>
-    <AssemblyName>AGL.Test</AssemblyName>
+    <RootNamespace>AGL.Test.UnitTests</RootNamespace>
+    <AssemblyName>AGL.Test.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -111,22 +111,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="EndToEnd\endToEndTests.cs" />
-    <Compile Include="IntegrationTests\AdapterIntegrationTests.cs" />
+    <Compile Include="App\PetsControllerTests.cs" />
+    <Compile Include="Models\PeopleTests.cs" />
+    <Compile Include="Models\PetTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTests\AdapterTests.cs" />
-    <Compile Include="UnitTests\PeopleLogicTest.cs" />
-    <Compile Include="UnitTests\PeopleControllerTests.cs" />
-    <Compile Include="UnitTests\UnityTests.cs" />
-    <Compile Include="UnitTests\UnitTestBase.cs" />
+    <Compile Include="Adapters\AdapterTests.cs" />
+    <Compile Include="App\PetsLogicTest.cs" />
+    <Compile Include="UnityTests.cs" />
+    <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AGL.App\AGL.App.csproj">
+    <ProjectReference Include="..\..\AGL.App\AGL.App.csproj">
       <Project>{3813d943-ad36-40cd-8e16-a1849f8a6719}</Project>
       <Name>AGL.App</Name>
     </ProjectReference>
@@ -141,6 +141,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

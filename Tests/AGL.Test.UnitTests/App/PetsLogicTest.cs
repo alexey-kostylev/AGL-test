@@ -1,32 +1,33 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AGL.App.Logic;
-using AGL.App.Adapters;
 using Moq;
 using AGL.App.Models;
 using System.Collections.Generic;
 using FluentAssertions;
 using System.Linq;
 using System.Threading.Tasks;
+using Ploeh.AutoFixture;
+using AGL.App;
 
-namespace AGL.Test.UnitTests
+namespace AGL.Test.UnitTests.App
 {
     [TestClass]
-    public class PeopleLogicTest : UnitTestBase
+    public class PetsLogicTest : TestBase
     {
-        private PeopleLogic _logic;
+        private PetsLogic _logic;
         private readonly Mock<IPeopleAdapter> _mockAdapter = new Mock<IPeopleAdapter>();
         
         [TestInitialize]
         public void TestInit()
         {
-            _logic = new PeopleLogic(_mockAdapter.Object);
+            _logic = new PetsLogic(_mockAdapter.Object);
         } 
 
         [TestMethod]
         public void ShouldThrowExceptionIfAdapterIsNull()
         {
-            Action act = () => new PeopleLogic(null);
+            Action act = () => new PetsLogic(null);
             act.ShouldThrow<ArgumentNullException>("null adapter passed");
         }
 
@@ -66,11 +67,11 @@ namespace AGL.Test.UnitTests
                 }
             };
 
-            _mockAdapter.Setup(x => x.GetPersons())
+            _mockAdapter.Setup(x => x.GetPetOwners())
                 .ReturnsAsync(persons);
 
             var data = await _logic.GetAllCats();
-            _mockAdapter.Verify(x => x.GetPersons(), Times.Once);
+            _mockAdapter.Verify(x => x.GetPetOwners(), Times.Once);
 
             data.Should().NotBeNull();
             data.Should().HaveCount(2);
@@ -87,7 +88,7 @@ namespace AGL.Test.UnitTests
         [TestMethod]
         public async Task ShouldTolerateNullData()
         {
-            _mockAdapter.Setup(x => x.GetPersons())
+            _mockAdapter.Setup(x => x.GetPetOwners())
                 .ReturnsAsync((ICollection<Person>)null);
 
             var data = await _logic.GetAllCats();
@@ -99,7 +100,7 @@ namespace AGL.Test.UnitTests
         [TestMethod]
         public async Task ShouldTolerateEmptyData()
         {
-            _mockAdapter.Setup(x => x.GetPersons())
+            _mockAdapter.Setup(x => x.GetPetOwners())
                 .ReturnsAsync(new List<Person>());
 
             var data = await _logic.GetAllCats();
@@ -130,7 +131,7 @@ namespace AGL.Test.UnitTests
                     Pets = null
                 }
             };
-            _mockAdapter.Setup(x => x.GetPersons())
+            _mockAdapter.Setup(x => x.GetPetOwners())
                 .ReturnsAsync(persons);
 
             var data = await _logic.GetAllCats();
@@ -158,7 +159,7 @@ namespace AGL.Test.UnitTests
                 },
                 null
             };
-            _mockAdapter.Setup(x => x.GetPersons())
+            _mockAdapter.Setup(x => x.GetPetOwners())
                 .ReturnsAsync(persons);
 
             var data = await _logic.GetAllCats();
@@ -191,7 +192,7 @@ namespace AGL.Test.UnitTests
                     Pets = null
                 }
             };
-            _mockAdapter.Setup(x => x.GetPersons())
+            _mockAdapter.Setup(x => x.GetPetOwners())
                 .ReturnsAsync(persons);
 
             var data = await _logic.GetAllCats();
@@ -223,7 +224,7 @@ namespace AGL.Test.UnitTests
                     })
                 }
             };
-            _mockAdapter.Setup(x => x.GetPersons())
+            _mockAdapter.Setup(x => x.GetPetOwners())
                 .ReturnsAsync(persons);
 
             var data = await _logic.GetAllCats();
@@ -256,13 +257,13 @@ namespace AGL.Test.UnitTests
                     })
                 }
             };
-            _mockAdapter.Setup(x => x.GetPersons())
+            _mockAdapter.Setup(x => x.GetPetOwners())
                 .ReturnsAsync(persons);
 
             var data = await _logic.GetAllCats();
 
             data.Should().HaveCount(1);
             data.Single().PetNames.Should().BeEquivalentTo("cat", "cat");
-        }
+        }        
     }
 }

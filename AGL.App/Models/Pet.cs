@@ -11,7 +11,8 @@ namespace AGL.App.Models
         public string Name { get;set;}
         public PetType Type { get; set; }
 
-        public Pet() { }
+        public Pet() { }        
+
         public Pet(string name, PetType petType)
         {
             Name = name;

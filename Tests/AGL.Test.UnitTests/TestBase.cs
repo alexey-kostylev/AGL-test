@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AGL.Test.UnitTests
 {
-    public class UnitTestBase
+    public class TestBase
     {
         protected Fixture Fixture = new Fixture();
     }
