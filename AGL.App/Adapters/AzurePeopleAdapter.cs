@@ -35,7 +35,7 @@ namespace AGL.App.Adapters
                 throw new InvalidOperationException("response is null");
             }
 
-            if (response.ResponseStatus != ResponseStatus.Completed || response.StatusCode != HttpStatusCode.OK)
+            if (response.ErrorException != null || response.StatusCode != HttpStatusCode.OK || response.ResponseStatus == ResponseStatus.Error)
             {                
                 throw new WebException(
                     $"Error executing request. Error message: '{response.ErrorMessage}',"+ 
