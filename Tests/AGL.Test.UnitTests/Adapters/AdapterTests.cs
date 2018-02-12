@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using AGL.App.Models;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Net;
 
 namespace AGL.Test.UnitTests.Adapters
 {
@@ -83,7 +84,7 @@ namespace AGL.Test.UnitTests.Adapters
                 .ReturnsAsync(response);
 
             Func<Task> act = async () => await _adapter.GetPetOwners();
-            act.ShouldThrow<InvalidOperationException>().WithMessage("*error-test*");
+            act.ShouldThrow<WebException>().WithMessage("*error-test*");
         }
     }
 }
